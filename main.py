@@ -23,6 +23,7 @@ while True:
         time.sleep(config.get("refresh_rate", 0.5))
         continue
 
+
     progress_ms = fetcher.get_progress_ms()
 
     lyrics.update(current)
