@@ -27,13 +27,9 @@ while True:
 
     progress_ms = fetcher.get_progress_ms()
 
-    # Update lyrics if song changed
     lyrics.update(current)
+    lyrics.tracker.update(progress_ms)
 
-    # Update lyric sync index based on playback time
-    lyrics.tracker.get_index(progress_ms)
-
-    # Generate base display context
     context = generate_display_context(fetcher.playback, config, progress_ms=progress_ms)
 
     # Dynamically extract {line[N]} references from config
@@ -43,7 +39,6 @@ while True:
         for match in re.findall(r"{line\[(\-?\d+)]}", line_template)
     }
 
-    # Build line context using LyricsTracker
     context["line"] = {i: lyrics.tracker.get_line(i) for i in used_line_indices}
 
     # Render
