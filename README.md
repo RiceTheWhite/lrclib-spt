@@ -13,15 +13,16 @@ An ***INFINITELY*** customizable terminal-based Spotify synced-lyrics display, f
 ---
 
 ## TODO
+### Have an idea? make an issue OR contact me directly.
 
-- [ ] Centered text (You could inplement this yourself in the format, I might add an option to do this automatically later as it is very hacky and annoying.)
-- [ ] Border
+- [X] Centered text
+- [ ] Border around terminal
 - [X] Hex color support
 - [X] Lyrics-syncing
 - [X] Color support
 - [X] Fully customizable layout (really, you can change everything*.)
 - [X] Python `eval()`-like format (infinitely* customizable)
-- [ ] Protection against text wrapping
+- [X] Protection against text wrapping
 
 ---
 
