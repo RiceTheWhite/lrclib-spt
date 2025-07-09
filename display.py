@@ -96,18 +96,20 @@ class Displayer:
         self.auto_newline = auto_newline
         self.previous_lines = 0
 
-    def clear(self, method: str = "cursor"):
-        if method == "clear":
-            clear()
-            return
-        if method == "cursor":
-            for _ in range(self.previous_lines):
-                sys.stdout.write("\033[F") # move cursor up
-                sys.stdout.write("\033[K") # write line
-            self.previous_lines = 0
-            sys.stdout.write("\033[H\033[J") # home
-        if method == "none":
-            pass
+    def clear(self, method: str = "home"):
+        match method:
+            case "clear":
+                clear()
+            case "cursor":
+                for _ in range(self.previous_lines):
+                    sys.stdout.write("\033[F") # move cursor up
+                    sys.stdout.write("\033[K") # write line
+                self.previous_lines = 0
+            case "home":
+                sys.stdout.write("\033[H\033[J") # home
+            case "none":
+                pass
+
 
     def display(self, context: dict):
         output_lines = []
