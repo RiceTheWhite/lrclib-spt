@@ -18,8 +18,8 @@ while True:
 
     current = fetcher.playback.item
     if not current:
-        print("No track is currently playing.")
         sys.stdout.write("\033[F")
+        print("No track is currently playing.")
         time.sleep(config.get("refresh_rate", 0.5))
         continue
 
