@@ -56,8 +56,16 @@ class Displayer:
 
                 # Replace color tags BEFORE format()
                 def color_tag(match):
-                    name = match.group(1).lower()
-                    return ANSI_COLORS.get(name, "")
+                    code = match.group(1).lower()
+                    if code.startswith("#") and len(code) == 7:
+                        try:
+                            r = int(code[1:3], 16)
+                            g = int(code[3:5], 16)
+                            b = int(code[5:7], 16)
+                            return f"\033[38;2;{r};{g};{b}m"
+                        except:
+                            return ""
+                    return ANSI_COLORS.get(code, "")
 
                 line = re.sub(r"{color:(\w+)}", color_tag, line)
                 line = line.replace("{reset}", ANSI_COLORS["reset"])

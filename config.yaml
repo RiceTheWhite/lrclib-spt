@@ -32,7 +32,7 @@ format:
   # Lyrics
   - "{color:gray}{line[-2]}{reset}"
   - "{color:gray}{line[-1]}{reset}"
-  - "{color:green}{line[0]}{reset}"
+  - "{color:#00ff00}{line[0]}{reset}"
   - "{color:gray}{line[1]}{reset}"
   - "{color:gray}{line[2]}{reset}"
 
