@@ -1,4 +1,4 @@
-import time, sys
+import time, sys, os
 from fetcher import SpotifyFetcher, Config, LyricsManager
 from display import Displayer, generate_display_context
 
@@ -10,6 +10,11 @@ displayer = Displayer(config["format"])
 last_update_time = 0
 update_interval = config.get("spotify_refresh_interval", 4)
 
+if os.name == 'nt':
+    _ = os.system('cls')
+else:
+    _ = os.system('clear')
+
 while True:
     now = time.time()
     if now - last_update_time >= update_interval:
@@ -20,6 +25,7 @@ while True:
     if not current:
         print("No track is currently playing.")
         sys.stdout.write("\033[F")
+        sys.stdout.write("\033[K")
         time.sleep(config.get("refresh_rate", 0.5))
         continue
 
