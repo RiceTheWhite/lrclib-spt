@@ -11,6 +11,7 @@ offset_seconds: 0
 
 
 # === Display Format ===
+clearing_method: cursor    # clear, cursor, none (clear has occasional flickering)
 center_text: true
 wrap_protection: "truncate"   # Options: "truncate", "ellipsis", or "none"
 format:

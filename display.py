@@ -96,15 +96,18 @@ class Displayer:
         self.auto_newline = auto_newline
         self.previous_lines = 0
 
-    def clear(self, method: str = "clear"):
+    def clear(self, method: str = "cursor"):
         if method == "clear":
             clear()
             return
         if method == "cursor":
-            for _ in range(self.previous_lines + 1):
+            for _ in range(self.previous_lines):
                 sys.stdout.write("\033[F") # move cursor up
                 sys.stdout.write("\033[K") # write line
             self.previous_lines = 0
+            sys.stdout.write("\033[H\033[J") # home
+        if method == "none":
+            pass
 
     def display(self, context: dict):
         output_lines = []
@@ -125,7 +128,7 @@ class Displayer:
             except Exception as e:
                 output_lines.append(f"[Error] {line} → {e}")
 
-        self.clear()
+        self.clear(config.get("clearing_method", "cursor"))
         for line in output_lines:
             print(line, end="\n" if self.auto_newline else "")
         self.previous_lines = len(output_lines)
