@@ -67,8 +67,12 @@ class Displayer:
                             return ""
                     return ANSI_COLORS.get(code, "")
 
-                line = re.sub(r"{color:(\w+)}", color_tag, line)
+                line = re.sub(r"{color:([^}]+)}", color_tag, line)
                 line = line.replace("{reset}", ANSI_COLORS["reset"])
+                line = line.replace("{bold}", "\033[1m")
+                line = line.replace("{underline}", "\033[4m")
+                line = line.replace("{italic}", "\033[3m")
+                line = line.replace("{dim}", "\033[2m")
 
                 # Eval first, then format
                 line = re.sub(r"{=([^:}]+)(?::([^}]+))?}", eval_expr, line)

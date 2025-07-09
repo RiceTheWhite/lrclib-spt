@@ -5,47 +5,37 @@ redirect_uri: "http://127.0.0.1:3000/callback" # Copy this into the Redirect URI
 
 
 # === Update Intervals ===
-spotify_refresh_interval: 4     # How often (in seconds) to poll Spotify for new track info
-refresh_rate: 0.005             # UI update interval
-
-# Offset playback time (in seconds) more = sooner less = later
+spotify_refresh_interval: 4
+refresh_rate: 0.05
 offset_seconds: 0.0
 
 
 # === Display Format ===
 
-# NOTE: THERES A LOT MORE. CHECK sample.js. THIS USES eval() SO YOU CAN DO A LOT OF STUFF!!!!
-
 format:
-  # Title and metadata
-  - "{color:cyan}Now playing:{reset} {playback.item.name} — {playback.item.artists[0].name}"
-  - "{color:gray}Album:{reset} {playback.item.album.name}"
-  - "{color:gray}Device:{reset} {playback.device.name}"
+  # Metadata section
+  - "{color:#f9e2af}Now playing:{reset} {color:#cdd6f4}{playback.item.name} — {playback.item.artists[0].name}{reset}"
+  - "{color:#a6adc8}Album:{reset} {playback.item.album.name}"
+  - "{color:#a6adc8}Device:{reset} {playback.device.name}"
 
-  # Time and progress bar
-  - "{color:gray}Time:{reset} {elapsed} / {duration}"
+  # Time + progress
+  - "{color:#a6adc8}Time:{reset} {elapsed} / {duration}"
   - "{progress_bar}"
-
-  # Optional spacing
   - ""
 
-  # Lyrics
-  - "{color:gray}{line[-2]}{reset}"
-  - "{color:gray}{line[-1]}{reset}"
-  - "{color:#00ff00}{line[0]}{reset}"
-  - "{color:gray}{line[1]}{reset}"
-  - "{color:gray}{line[2]}{reset}"
+  # Lyrics scroll window
+  - "{color:#585b70}{line[-2]}{reset}"
+  - "{color:#a6adc8}{line[-1]}{reset}"
+  - "{color:#94e2d5}{bold}{line[0]}{reset}"
+  - "{color:#a6adc8}{line[1]}{reset}"
+  - "{color:#585b70}{line[2]}{reset}"
 
-#  - "{color:yellow}Progress:{reset} {=percent:.1f}%"
-#  - "{color:magenta}Bar:{reset} {=build_bar(percent / 100, config)}"
-
-
-fallback_to_plain: true         # If no synced lyrics are available, fall back to plain text
+fallback_to_plain: true
 
 
 # === Behavior Settings ===
-auto_hide_when_paused: true     # Hide display when paused
-stop_on_track_change: true      # Stop lyric rendering when the song changes
+auto_hide_when_paused: true
+stop_on_track_change: true
 
 
 # === Progress Bar ===
@@ -53,4 +43,6 @@ progress_bar: true
 progress_bar_width: 40
 progress_bar_fill: "█"
 progress_bar_empty: "░"
+progress_bar_color: "#94e2d5"
+progress_bar_bg_color: "#313244"
 progress_bar_format: "[{bar}] {percent:.1f}%"
