@@ -22,7 +22,8 @@ An ***INFINITELY*** customizable terminal-based Spotify synced-lyrics display, f
 - [X] Fully customizable layout (really, you can change everything*.)
 - [X] Python `eval()`-like format (infinitely* customizable)
 - [X] Protection against text wrapping
-
+- [ ] Spotify playback control in the terminal
+- [ ] Static lyrics fallback
 ---
 
 ## Features
