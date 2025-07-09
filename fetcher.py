@@ -128,6 +128,9 @@ class LyricsTracker:
             return self.lines[idx][1]
         return ""
 
+    def update(self, progress_ms: int):
+        self.get_index(progress_ms)
+
 class LyricsManager:
     def __init__(self):
         self.tracker = LyricsTracker()
