@@ -44,6 +44,8 @@ class SpotifyFetcher:
         import time
         self.last_fetch_time = time.time()
         playback = self.client.current_playback()
+        if playback is None:
+            return
         playback_obj = AttrDict(playback)
         self.last_progress_ms = playback_obj.progress_ms or 0
         self.playback = playback_obj
