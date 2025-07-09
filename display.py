@@ -60,7 +60,8 @@ class Displayer:
 
                 # Centering
                 if center:
-                    pad = (width - len(strip_ansi(line))) // 2
+                    visible = strip_ansi(line)
+                    pad = (width - len(visible)) // 2
                     if pad > 0:
                         line = " " * pad + line
 
