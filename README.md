@@ -6,8 +6,9 @@ An ***INFINITELY*** customizable terminal-based Spotify synced-lyrics display, f
 
 ## 📷 Screenshot
 
-![fullscreen](https://github.com/user-attachments/assets/b81be50a-0859-40a8-acc8-838e74a7b877)
-![terminal](https://github.com/user-attachments/assets/35667963-417e-4e4c-893a-15af05697b72)
+![terminal](https://github.com/user-attachments/assets/bab5d043-8d63-4876-bdf1-105554938f4f)
+![fullscreen](https://github.com/user-attachments/assets/ab17e79b-4279-4093-afca-5c3655b25e98)
+
 
 ---
 
