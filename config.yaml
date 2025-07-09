@@ -1,7 +1,7 @@
 # === Spotify OAuth ===
 client_id: "..."
 client_secret: "..."
-redirect_uri: "http://127.0.0.1:3000/callback" # Copy this into the Redirect URI field, you may change the port if needed.
+redirect_uri: "http://127.0.0.1:8888/callback" # Copy this into the Redirect URI field, you may change the port if needed.
 
 
 # === Update Intervals ===
