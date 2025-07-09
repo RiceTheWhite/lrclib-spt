@@ -1,6 +1,7 @@
-import time, sys, os
+import time
+import re, os
 from fetcher import SpotifyFetcher, Config, LyricsManager
-from display import Displayer, generate_display_context
+from display import Displayer, generate_display_context, clear
 
 fetcher = SpotifyFetcher()
 config = Config().config
@@ -10,10 +11,7 @@ displayer = Displayer(config["format"])
 last_update_time = 0
 update_interval = config.get("spotify_refresh_interval", 4)
 
-if os.name == 'nt':
-    _ = os.system('cls')
-else:
-    _ = os.system('clear')
+clear()
 
 while True:
     now = time.time()
@@ -24,19 +22,26 @@ while True:
     current = fetcher.playback.item
     if not current:
         print("No track is currently playing.")
-        sys.stdout.write("\033[F")
-        sys.stdout.write("\033[K")
         time.sleep(config.get("refresh_rate", 0.5))
         continue
 
-
     progress_ms = fetcher.get_progress_ms()
 
+    # Update lyrics if song changed
     lyrics.update(current)
+
+    # Basic playback info context
     context = generate_display_context(fetcher.playback, config, progress_ms=progress_ms)
 
-    # Inject dynamic line[i] context
-    context["line"] = lyrics.get_lines_for_context(progress_ms, config["format"])
+    # Dynamically find {line[N]} placeholders used in config
+    used_line_indices = {
+        int(match)
+        for line_template in config["format"]
+        for match in re.findall(r"{line\[(\-?\d+)]}", line_template)
+    }
+
+    # Fetch each requested lyric line and inject into context
+    context["line"] = {i: lyrics.tracker.get_line(i) for i in used_line_indices}
 
     displayer.display(context)
     time.sleep(config.get("refresh_rate", 0.5))

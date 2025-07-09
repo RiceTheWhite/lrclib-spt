@@ -7,11 +7,12 @@ redirect_uri: "http://127.0.0.1:3000/callback" # Copy this into the Redirect URI
 # === Update Intervals ===
 spotify_refresh_interval: 4
 refresh_rate: 0.05
-offset_seconds: 0.0
+offset_seconds: 0
 
 
 # === Display Format ===
-
+center_text: true
+wrap_protection: "truncate"   # Options: "truncate", "ellipsis", or "none"
 format:
   # Metadata section
   - "{color:#f9e2af}Now playing:{reset} {color:#cdd6f4}{playback.item.name} — {playback.item.artists[0].name}{reset}"
