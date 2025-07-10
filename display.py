@@ -1,14 +1,15 @@
 import re
 from blessed import Terminal
-
 term = Terminal()
+
 
 def hex_to_rgb(hexcode):
     hexcode = hexcode.lstrip("#")
     return tuple(int(hexcode[i:i+2], 16) for i in (0, 2, 4))
 
 def strip_ansi(text):
-    return re.sub(r"\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])", "", text)
+    ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
+    return ansi_escape.sub('', text)
 
 def build_bar(progress: float, config: dict) -> str:
     width = config.get("progress_bar_width", 40)
@@ -42,9 +43,11 @@ class Displayer:
                 line = re.sub(r"{color:(#?[a-zA-Z0-9]+)}", lambda m: self.color_tag(m.group(1)), line)
 
                 # Replace formatting tags
-                line = line.replace("{reset}", term.normal)
-                line = line.replace("{bold}", term.bold)
-                line = line.replace("{underline}", term.underline)
+                line = line.replace("{reset}", "\x1b[0m")
+                line = line.replace("{bold}", "\x1b[1m")
+                line = line.replace("{underline}", "\x1b[4m")
+                line = line.replace("{italic}", "\x1b[3m")
+                line = line.replace("{strikethrough}", "\x1b[9m")
 
                 # Format context variables
                 line = line.format(**context)
