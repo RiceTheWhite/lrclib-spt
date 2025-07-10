@@ -1,7 +1,7 @@
 import re
+from wcwidth import wcswidth
 from blessed import Terminal
 term = Terminal()
-
 
 def hex_to_rgb(hexcode):
     hexcode = hexcode.lstrip("#")
@@ -64,7 +64,7 @@ class Displayer:
                 # Centering
                 if center:
                     visible = strip_ansi(line)
-                    pad = (width - len(visible)) // 2
+                    pad = (width - wcswidth(visible)) // 2
                     if pad > 0:
                         line = " " * pad + line
 
