@@ -2,6 +2,11 @@
 
 An ***INFINITELY*** customizable terminal-based Spotify synced-lyrics display, full theme customization, and local time tracking for smooth updates.
 
+###### Tested on:
+- [X] Linux
+- [X] Windows (broken progress bar, needs nerd fonts?)
+- [ ] MacOS
+
 ---
 
 ## 📷 Screenshot
