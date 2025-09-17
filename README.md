@@ -1,3 +1,5 @@
+# VERY VIBE-CODED PICE OF SHIT, DONT TOUCH
+
 # 🎵 Spotify Lyrics in the Terminal
 
 An ***INFINITELY*** customizable terminal-based Spotify synced-lyrics display, full theme customization, and local time tracking for smooth updates.
